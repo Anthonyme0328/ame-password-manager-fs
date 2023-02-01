@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express()
-
+const PORT = 3001
 const mysql = require('mysql')
 const cors = require('cors')
 
-const {encrypt, dycrypt} = require('./EncHandler')
+const {encrypt, decrypt} = require('./EncHandler')
 
 
 
-const PORT = 3001
+
 
 app.use(cors())
 app.use(express.json())
@@ -35,12 +35,25 @@ app.post('/addPassword', (req, res) => {
         console.log('there was an issue', err)
       } else {
         res.send('winner winner it worked')
-        console.log(result)
       }
     }
     )
 
 });
+
+app.post("/decryptpassword", (req, res) => {
+  res.send(decrypt(req.body));
+});
+
+app.get('/showPasswords', (req, res) => {
+  db.query('SELECT * FROM passwords', (err, result) => {
+    if (err) {
+      console.log('Hey there was an error', err)
+    } else {
+    res.send(result)
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log('server works')

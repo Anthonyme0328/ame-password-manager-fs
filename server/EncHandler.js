@@ -1,5 +1,4 @@
 const crypto = require('crypto')
-const { isBuffer } = require('util')
 const secret = 'abcdabcdabcdabcdabcdabcdabcdabcd'
 
 const encrypt = (password) => {
@@ -11,7 +10,7 @@ const encrypt = (password) => {
   const encrytedPassword = Buffer.concat([
     cypher.update(password),
     cypher.final()
-  ])
+  ]);
 
   return {
     iv: iv.toString('hex'), 
@@ -21,14 +20,14 @@ const encrypt = (password) => {
 
 const decrypt = (encryption) => {
 
-  const decypher = crypto.createDecipheriv('aes-256-ctr', Buffer.from(secret), Buffer.from(encryption.iv, 'hex'))
+  const decipher = crypto.createDecipheriv('aes-256-ctr', Buffer.from(secret), Buffer.from(encryption.iv, 'hex'))
 
   const decryptedPassword = Buffer.concat([
-    decypher.update(Buffer.from(encryption.password, 'hex')),
-    decypher.final()
+    decipher.update(Buffer.from(encryption.password, 'hex')),
+    decipher.final()
   ])
 
-  return decryptedPassword.toString
+  return decryptedPassword.toString()
 }
 
 module.exports = {encrypt, decrypt}

@@ -1,5 +1,5 @@
 const crypto = require('crypto')
-const secret = 'abcdabcdabcdabcdabcdabcdabcdabcd'
+const secret = '********************************'
 
 const encrypt = (password) => {
 

@@ -43,10 +43,10 @@ function App() {
     <div className="App">
       
       <div className='addPassword'>
-        <input type='text' placeholder='Example. ABC123' onChange={(event) => {
+        <input type='text' placeholder='Password Ex: ABC123' onChange={(event) => {
           setPassword(event.target.value)}}/>
 
-        <input type='text' placeholder='Example. Instagram' onChange={(event) => {
+        <input type='text' placeholder='Website Ex: Instagram' onChange={(event) => {
           setWebsite(event.target.value)}}/>
 
         <button onClick={addPassword}>Add Password</button>
